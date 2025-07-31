@@ -47,7 +47,7 @@ export default function Profile() {
 
         <View style={styles.infoRow}>
           <Text style={styles.label}>Jurusan:</Text>
-          <Text style={styles.value}>Teknik Informatika</Text>
+          <Text style={styles.value}>Informatika</Text>
         </View>
 
         <View style={styles.infoRow}>
@@ -67,7 +67,7 @@ export default function Profile() {
         
         <View style={styles.infoRow}>
           <Text style={styles.label}>Program Studi:</Text>
-          <Text style={styles.value}>S1 Teknik Informatika</Text>
+          <Text style={styles.value}>S1 Informatika</Text>
         </View>
 
         <View style={styles.infoRow}>
