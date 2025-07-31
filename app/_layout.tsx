@@ -38,5 +38,47 @@ if (!loaded && !error) {
 }
 
 
-  return <Stack />;
+  return (
+    <Stack>
+      <Stack.Screen 
+        name="(tabs)" 
+        options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="index" 
+        options={{ 
+          title: "Menu Utama",
+          headerShown: true 
+        }} 
+      />
+      <Stack.Screen 
+        name="nama-list" 
+        options={{ 
+          title: "Daftar Nama",
+          headerShown: true 
+        }} 
+      />
+      <Stack.Screen 
+        name="gambar-grid" 
+        options={{ 
+          title: "Grid Gambar",
+          headerShown: true 
+        }} 
+      />
+      <Stack.Screen 
+        name="icon-screen" 
+        options={{ 
+          title: "Icon Screen",
+          headerShown: true 
+        }} 
+      />
+      <Stack.Screen 
+        name="fonts-demo" 
+        options={{ 
+          title: "Demo Font",
+          headerShown: true 
+        }} 
+      />
+    </Stack>
+  );
 }
