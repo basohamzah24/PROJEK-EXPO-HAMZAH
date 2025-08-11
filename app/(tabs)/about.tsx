@@ -1,232 +1,183 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 import React from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
+const students = [
+    { 
+        id: '1', 
+        name: 'BASO HAMZAH', 
+        nim: '105841106922',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841106922_.jpg?1751871539',
+    },
+    {
+        id: '2',
+        name: 'FAUZIAH',
+        nim: '105841107023',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107022_.jpg?1751871540',
+   },
+    {
+        id: '3',
+        name: 'ZALNA NUR ISLAMIAH',
+        nim: '105841107124',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107122_.jpg?1751871541',
+    },
+    {
+        id: '4',
+        name: 'AHMAD RIZKI',
+        nim: '105841107025',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107222_.jpg?1751871542',
+    },
+    {
+        id: '5',
+        name: 'SITI NURHALIZA',
+        nim: '105841107026',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107322_.jpg?1751871543',
+    },
+    {
+        id: '6',
+        name: 'MUHAMMAD FADLI',
+        nim: '105841107027',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107422_.jpg?1751871544',
+    },
+    {
+        id: '7',
+        name: 'NURUL AZIZAH',
+        nim: '105841107028',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107522_.jpg?1751871545',
+    },
+    {
+        id: '8',
+        name: 'DIMAS PRATAMA',
+        nim: '105841107029',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107622_.jpg?1751871546',
+    },
+    {
+        id: '9',
+        name: 'SARAH AMELIA',
+        nim: '105841107030',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107722_.jpg?1751871547',
+    },
+    {
+        id: '10',
+        name: 'IRFAN SETIAWAN',
+        nim: '105841107031',
+        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107822_.jpg?1751871548',
+    }
+];
+
 export default function About() {
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Tentang Aplikasi</Text>
-        <Text style={styles.subtitle}>Projek Expo Hamzah</Text>
-      </View>
+    const renderStudent = ({ item }: { item: typeof students[0] }) => (
+        <Link 
+            href={{ pathname: "/(tabs)/user/[id]", params: { id: item.id } }}
+            asChild
+        >
+            <TouchableOpacity style={styles.studentCard}>
+                <Image 
+                    source={{ uri: item.foto }}
+                    style={styles.avatar}
+                    resizeMode="cover"
+                />
+                <View style={styles.studentInfo}>
+                    <Text style={styles.studentName}>{item.name}</Text>
+                    <Text style={styles.studentNim}>NIM: {item.nim}</Text>
+                </View>
+                <Ionicons name="chevron-forward" size={24} color="#666" />
+            </TouchableOpacity>
+        </Link>
+    );
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Deskripsi Aplikasi</Text>
-        <Text style={styles.description}>
-          Aplikasi ini adalah implementasi lengkap dari pembelajaran React Native menggunakan 
-          framework Expo dengan TypeScript. Dikembangkan sebagai proyek tugas mata kuliah 
-          Aplikasi Komputasi Bergerak, aplikasi ini mendemonstrasikan penggunaan tab navigation, 
-          manajemen font yang konsisten, handling gambar yang optimal, dan interface yang 
-          responsif untuk berbagai device mobile.
-        </Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Fitur-fitur Aplikasi:</Text>
-        
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>� Halaman Home</Text>
-          <Text style={styles.featureDescription}>
-            Menampilkan informasi lengkap tentang Universitas Muhammadiyah Makassar 
-            dengan gambar kampus yang responsif, logo universitas, dan deskripsi institusi.
-          </Text>
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Ionicons name="school" size={32} color="#2196F3" />
+                <Text style={styles.headerTitle}>Daftar Mahasiswa</Text>
+                <Text style={styles.headerSubtitle}>
+                    Total: {students.length} mahasiswa
+                </Text>
+            </View>
+            
+            <FlatList
+                data={students}
+                renderItem={renderStudent}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={styles.listContainer}
+                showsVerticalScrollIndicator={false}
+            />
         </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>👤 Profil Mahasiswa</Text>
-          <Text style={styles.featureDescription}>
-            Halaman profil personal yang menampilkan foto, data akademik (NIM, Program Studi), 
-            informasi kontak, dan biodata lengkap mahasiswa dengan desain yang menarik.
-          </Text>
-        </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>ℹ️ Tentang Aplikasi</Text>
-          <Text style={styles.featureDescription}>
-            Halaman informasi aplikasi yang berisi deskripsi, fitur-fitur, teknologi yang 
-            digunakan, dan detail pengembangan aplikasi mobile dengan React Native.
-          </Text>
-        </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>🎨 Tipografi Konsisten</Text>
-          <Text style={styles.featureDescription}>
-            Implementasi font fontBas yang konsisten di seluruh aplikasi untuk 
-            memberikan pengalaman visual yang seragam dan profesional.
-          </Text>
-        </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>� Navigasi Tab</Text>
-          <Text style={styles.featureDescription}>
-            Sistem navigasi tab yang mudah digunakan dengan ikon intuitif (Home, About, Profile) 
-            menggunakan expo-router dan @expo/vector-icons untuk navigasi yang smooth.
-          </Text>
-        </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>🖼️ Manajemen Gambar</Text>
-          <Text style={styles.featureDescription}>
-            Handling gambar yang optimal dengan error handling, loading state, dan 
-            resize mode yang responsif untuk berbagai ukuran layar device.
-          </Text>
-        </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>📚 Sistem Font Lengkap</Text>
-          <Text style={styles.featureDescription}>
-            Dukungan 12+ font custom termasuk static fonts, variable fonts, dan font khusus 
-            dengan loading system yang efisien menggunakan expo-font.
-          </Text>
-        </View>
-
-        <View style={styles.featureItem}>
-          <Text style={styles.featureTitle}>🎯 Interface Responsif</Text>
-          <Text style={styles.featureDescription}>
-            Desain interface yang responsif dan adaptive terhadap berbagai ukuran layar 
-            dengan styling yang konsisten menggunakan StyleSheet dan Flexbox.
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Teknologi yang Digunakan:</Text>
-        <View style={styles.techList}>
-          <Text style={styles.techItem}>• React Native - Framework pengembangan mobile</Text>
-          <Text style={styles.techItem}>• Expo SDK - Platform development dan deployment</Text>
-          <Text style={styles.techItem}>• TypeScript - Type-safe JavaScript development</Text>
-          <Text style={styles.techItem}>• Expo Router - File-based routing system</Text>
-          <Text style={styles.techItem}>• Expo Font - Custom font management</Text>
-          <Text style={styles.techItem}>• Expo Vector Icons - Icon library (Ionicons)</Text>
-          <Text style={styles.techItem}>• React Navigation - Tab navigation system</Text>
-          <Text style={styles.techItem}>• StyleSheet - React Native styling</Text>
-          <Text style={styles.techItem}>• ScrollView - Scrollable content container</Text>
-          <Text style={styles.techItem}>• Image Component - Asset rendering dan handling</Text>
-        </View>
-      </View>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Dikembangkan oleh Baso Hamzah (NIM: 105841106922) sebagai bagian dari 
-          pembelajaran mobile development di Universitas Muhammadiyah Makassar. 
-          Aplikasi ini menunjukkan implementasi best practices dalam pengembangan 
-          aplikasi mobile dengan React Native dan Expo.
-        </Text>
-        <Text style={styles.version}>Versi 2.0.0 - Tab Navigation Release</Text>
-      </View>
-    </ScrollView>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  header: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 30,
-    paddingHorizontal: 20,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 5,
-    fontFamily: 'fontBas',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: '600',
-    fontFamily: 'fontBas',
-  },
-  section: {
-    backgroundColor: '#fff',
-    margin: 15,
-    padding: 20,
-    borderRadius: 12,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
+    container: {
+        flex: 1,
+        backgroundColor: '#f5f5f5',
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 15,
-    fontFamily: 'fontBas',
-  },
-  description: {
-    fontSize: 14,
-    lineHeight: 22,
-    color: '#666',
-    textAlign: 'justify',
-    fontFamily: 'fontBas',
-  },
-  featureItem: {
-    marginBottom: 20,
-  },
-  featureTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#4CAF50',
-    marginBottom: 8,
-    fontFamily: 'fontBas',
-  },
-  featureDescription: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: '#666',
-    textAlign: 'justify',
-    fontFamily: 'fontBas',
-  },
-  techList: {
-    paddingLeft: 10,
-  },
-  techItem: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 5,
-    fontFamily: 'SpaceMono-Regular',
-  },
-  footer: {
-    backgroundColor: '#fff',
-    margin: 15,
-    padding: 20,
-    borderRadius: 12,
-    alignItems: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
+    header: {
+        backgroundColor: '#fff',
+        padding: 20,
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-  },
-  footerText: {
-    fontSize: 12,
-    color: '#999',
-    textAlign: 'center',
-    marginBottom: 10,
-    fontFamily: 'fontBas',
-  },
-  version: {
-    fontSize: 12,
-    color: '#4CAF50',
-    fontWeight: 'bold',
-    fontFamily: 'fontBas',
-  },
+    headerTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#2196F3',
+        marginTop: 10,
+    },
+    headerSubtitle: {
+        fontSize: 16,
+        color: '#666',
+        marginTop: 5,
+    },
+    listContainer: {
+        padding: 15,
+    },
+    studentCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        padding: 15,
+        marginBottom: 10,
+        borderRadius: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    avatar: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        marginRight: 15,
+        borderWidth: 2,
+        borderColor: '#e0e0e0',
+    },
+    studentInfo: {
+        flex: 1,
+    },
+    studentName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 5,
+    },
+    studentNim: {
+        fontSize: 14,
+        color: '#666',
+    },
 });

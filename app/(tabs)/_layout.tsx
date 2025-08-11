@@ -48,6 +48,22 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="students"
+        options={{
+          title: 'Students',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="user/[id]"
+        options={{
+          href: null, // Menyembunyikan dari tab bar
+          title: 'User Detail',
+        }}
+      />
     </Tabs>
   );
 }

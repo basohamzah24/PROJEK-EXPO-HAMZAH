@@ -1,17 +1,21 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
 export default function Profile() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Profil Mahasiswa</Text>
+        <View style={styles.headerContent}>
+          <Ionicons name="person-circle" size={24} color="#fff" />
+          <Text style={styles.title}>Profil Mahasiswa</Text>
+        </View>
       </View>
 
       {/* Profile Photo Section */}
@@ -23,39 +27,51 @@ export default function Profile() {
             resizeMode="cover"
           />
         </View>
-        <Text style={styles.photoCaption}>Foto Profil</Text>
+        <View style={styles.photoCaptionContainer}>
+          <Ionicons name="camera" size={16} color="#666" />
+          <Text style={styles.photoCaption}>Foto Profil</Text>
+        </View>
       </View>
 
       {/* Personal Information */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Data Pribadi</Text>
+        <View style={styles.sectionHeader}>
+          <Ionicons name="person" size={20} color="#FF5722" />
+          <Text style={styles.sectionTitle}>Data Pribadi</Text>
+        </View>
         
         <View style={styles.infoRow}>
+          <Ionicons name="person-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Nama:</Text>
           <Text style={styles.value}>BASO HAMZAH</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="id-card-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>NIM:</Text>
           <Text style={styles.value}>105841106922</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="people-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Kelas:</Text>
           <Text style={styles.value}>B</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="laptop-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Jurusan:</Text>
           <Text style={styles.value}>Informatika</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="library-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Fakultas:</Text>
           <Text style={styles.value}>Teknik</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="school-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Universitas:</Text>
           <Text style={styles.value}>Universitas Muhammadiyah Makassar</Text>
         </View>
@@ -63,24 +79,31 @@ export default function Profile() {
 
       {/* Academic Information */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Informasi Akademik</Text>
+        <View style={styles.sectionHeader}>
+          <Ionicons name="school" size={20} color="#FF5722" />
+          <Text style={styles.sectionTitle}>Informasi Akademik</Text>
+        </View>
         
         <View style={styles.infoRow}>
+          <Ionicons name="book-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Program Studi:</Text>
           <Text style={styles.value}>S1 Informatika</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="time-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Semester:</Text>
           <Text style={styles.value}>6 (Enam)</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="checkmark-circle-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Status:</Text>
           <Text style={styles.value}>Mahasiswa Aktif</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="desktop-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Mata Kuliah:</Text>
           <Text style={styles.value}>Aplikasi Komputasi Bergerak</Text>
         </View>
@@ -88,14 +111,19 @@ export default function Profile() {
 
       {/* Contact Information */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Informasi Kontak</Text>
+        <View style={styles.sectionHeader}>
+          <Ionicons name="call" size={20} color="#FF5722" />
+          <Text style={styles.sectionTitle}>Informasi Kontak</Text>
+        </View>
         
         <View style={styles.infoRow}>
+          <Ionicons name="mail-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Email Institusi:</Text>
           <Text style={styles.emailValue}>105841106922@unismuh.ac.id</Text>
         </View>
 
         <View style={styles.infoRow}>
+          <Ionicons name="location-outline" size={16} color="#FF5722" style={styles.infoIcon} />
           <Text style={styles.label}>Asal Daerah:</Text>
           <Text style={styles.value}>Makassar, Sulawesi Selatan</Text>
         </View>
@@ -131,6 +159,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontFamily: 'fontBas',
+    marginLeft: 8,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   photoSection: {
     backgroundColor: '#fff',
@@ -164,6 +198,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
     fontFamily: 'fontBas',
+    marginLeft: 5,
+  },
+  photoCaptionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   section: {
     backgroundColor: '#fff',
@@ -186,11 +226,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
     fontFamily: 'fontBas',
+    marginLeft: 8,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 0,
   },
   infoRow: {
     flexDirection: 'row',
     marginBottom: 12,
-    alignItems: 'flex-start',
+    alignItems: 'center',
+  },
+  infoIcon: {
+    marginRight: 8,
+    width: 20,
   },
   label: {
     fontSize: 14,

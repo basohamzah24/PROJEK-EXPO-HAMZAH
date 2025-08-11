@@ -1,10 +1,13 @@
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 export default function Home() {
@@ -84,6 +87,47 @@ export default function Home() {
           <Text style={styles.bullet}>• </Text>
           <Text style={styles.bulletText}>Program Studi Terakreditasi</Text>
         </View>
+      </View>
+
+      {/* Quick Navigation */}
+      <View style={styles.navSection}>
+        <Text style={styles.navTitle}>Navigasi Cepat</Text>
+        
+        <TouchableOpacity 
+          style={styles.navButton}
+          onPress={() => router.push('/(tabs)/students')}
+        >
+          <Ionicons name="people" size={24} color="#fff" />
+          <View style={styles.navButtonContent}>
+            <Text style={styles.navButtonText}>Daftar Mahasiswa</Text>
+            <Text style={styles.navButtonSubtext}>Lihat semua mahasiswa</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={24} color="#fff" />
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.navButton}
+          onPress={() => router.push('/(tabs)/about')}
+        >
+          <Ionicons name="information-circle" size={24} color="#fff" />
+          <View style={styles.navButtonContent}>
+            <Text style={styles.navButtonText}>Tentang Aplikasi</Text>
+            <Text style={styles.navButtonSubtext}>Informasi & fitur aplikasi</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={24} color="#fff" />
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.navButton}
+          onPress={() => router.push('/(tabs)/profile')}
+        >
+          <Ionicons name="person" size={24} color="#fff" />
+          <View style={styles.navButtonContent}>
+            <Text style={styles.navButtonText}>Profil Mahasiswa</Text>
+            <Text style={styles.navButtonSubtext}>Data pribadi & akademik</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={24} color="#fff" />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -228,6 +272,50 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     color: '#333',
+    fontFamily: 'fontBas',
+  },
+  navSection: {
+    backgroundColor: '#fff',
+    margin: 15,
+    padding: 20,
+    borderRadius: 12,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+  },
+  navTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#2196F3',
+    marginBottom: 15,
+    fontFamily: 'fontBas',
+  },
+  navButton: {
+    backgroundColor: '#2196F3',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 10,
+  },
+  navButtonContent: {
+    flex: 1,
+    marginLeft: 15,
+  },
+  navButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'fontBas',
+  },
+  navButtonSubtext: {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 14,
+    marginTop: 2,
     fontFamily: 'fontBas',
   },
 });
