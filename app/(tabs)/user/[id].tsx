@@ -1,113 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useMemo } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
-const students = [
-    { 
-        id: '1', 
-        name: 'BASO HAMZAH', 
-        nim: '105841106922',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841106922_.jpg?1751871539',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841106922@unismuh.ac.id'
-    },
-    {
-        id: '2',
-        name: 'FAUZIAH',
-        nim: '105841107023',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107022_.jpg?1751871540',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107022@unismuh.ac.id'
-   },
-    {
-        id: '3',
-        name: 'ZALNA NUR ISLAMIAH',
-        nim: '105841107122',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107122_.jpg?1751871541',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107124@unismuh.ac.id'
-    },
-    {
-        id: '4',
-        name: 'AHMAD RIZKI',
-        nim: '105841107222',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107222_.jpg?1751871542',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107025@unismuh.ac.id'
-    },
-    {
-        id: '5',
-        name: 'SITI NURHALIZA',
-        nim: '105841107322',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107322_.jpg?1751871543',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107026@unismuh.ac.id'
-    },
-    {
-        id: '6',
-        name: 'MUHAMMAD FADLI',
-        nim: '105841107422',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107422_.jpg?1751871544',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107027@unismuh.ac.id'
-    },
-    {
-        id: '7',
-        name: 'NURUL AZIZAH',
-        nim: '105841107522',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107522_.jpg?1751871545',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107028@unismuh.ac.id'
-    },
-    {
-        id: '8',
-        name: 'DIMAS PRATAMA',
-        nim: '105841107622',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107622_.jpg?1751871546',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107029@unismuh.ac.id'
-    },
-    {
-        id: '9',
-        name: 'SARAH AMELIA',
-        nim: '105841107722',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107722_.jpg?1751871547',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107030@unismuh.ac.id'
-    },
-    {
-        id: '10',
-        name: 'IRFAN SETIAWAN',
-        nim: '105841107822',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107822_.jpg?1751871548',
-        jurusan: 'Informatika',
-        fakultas: 'Teknik',
-        semester: '6',
-        email: '105841107031@unismuh.ac.id'
-    }
-];
+import { getStudentById } from '../../../data/students';
 export default function UserPage() {
     const { id } = useLocalSearchParams();
-    const student = useMemo(() => students.find(student => student.id === id), [id]);
+    const student = getStudentById(id as string);
 
     if (!student) {
         return (
@@ -185,20 +82,20 @@ export default function UserPage() {
                     
                     <View style={styles.infoRow}>
                         <Ionicons name="laptop-outline" size={18} color="#2196F3" style={styles.infoIcon} />
-                        <Text style={styles.label}>Jurusan:</Text>
-                        <Text style={styles.value}>{student.jurusan}</Text>
+                        <Text style={styles.label}>Program Studi:</Text>
+                        <Text style={styles.value}>{student.prodi || 'S1 Informatika'}</Text>
                     </View>
                     
                     <View style={styles.infoRow}>
                         <Ionicons name="library-outline" size={18} color="#2196F3" style={styles.infoIcon} />
                         <Text style={styles.label}>Fakultas:</Text>
-                        <Text style={styles.value}>{student.fakultas}</Text>
+                        <Text style={styles.value}>{student.fakultas || 'Teknik'}</Text>
                     </View>
                     
                     <View style={styles.infoRow}>
                         <Ionicons name="time-outline" size={18} color="#2196F3" style={styles.infoIcon} />
                         <Text style={styles.label}>Semester:</Text>
-                        <Text style={styles.value}>{student.semester}</Text>
+                        <Text style={styles.value}>{student.semester || '6'}</Text>
                     </View>
                 </View>
 
@@ -212,7 +109,7 @@ export default function UserPage() {
                     <View style={styles.infoRow}>
                         <Ionicons name="mail-outline" size={18} color="#2196F3" style={styles.infoIcon} />
                         <Text style={styles.label}>Email Institusi:</Text>
-                        <Text style={styles.emailValue}>{student.email}</Text>
+                        <Text style={styles.emailValue}>{student.nim}@unismuh.ac.id</Text>
                     </View>
                     
                     <View style={styles.infoRow}>

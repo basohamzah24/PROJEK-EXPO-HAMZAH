@@ -12,74 +12,15 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-
-const students = [
-    { 
-        id: '1', 
-        name: 'BASO HAMZAH', 
-        nim: '105841106922',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841106922_.jpg?1751871539',
-    },
-    {
-        id: '2',
-        name: 'FAUZIAH',
-        nim: '105841107022',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107022_.jpg?1751871540',
-   },
-    {
-        id: '3',
-        name: 'ZALNA NUR ISLAMIAH',
-        nim: '105841107122',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107122_.jpg?1751871541',
-    },
-    {
-        id: '4',
-        name: 'AHMAD RIZKI',
-        nim: '105841107222',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107222_.jpg?1751871542',
-    },
-    {
-        id: '5',
-        name: 'SITI NURHALIZA',
-        nim: '105841107322',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107322_.jpg?1751871543',
-    },
-    {
-        id: '6',
-        name: 'MUHAMMAD FADLI',
-        nim: '105841107422',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107422_.jpg?1751871544',
-    },
-    {
-        id: '7',
-        name: 'NURUL AZIZAH',
-        nim: '105841107522',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107522_.jpg?1751871545',
-    },
-    {
-        id: '8',
-        name: 'DIMAS PRATAMA',
-        nim: '105841107622',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107622_.jpg?1751871546',
-    },
-    {
-        id: '9',
-        name: 'SARAH AMELIA',
-        nim: '105841107722',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107722_.jpg?1751871547',
-    },
-    {
-        id: '10',
-        name: 'IRFAN SETIAWAN',
-        nim: '105841107822',
-        foto: 'https://simak.unismuh.ac.id/upload/mahasiswa/105841107822_.jpg?1751871548',
-    }
-];
+import { getAllStudents } from '../../data/students';
 
 export default function Students() {
     const [searchQuery, setSearchQuery] = useState('');
     const [refreshing, setRefreshing] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    
+    // Get students from data file
+    const students = getAllStudents();
     
 
     
@@ -108,7 +49,7 @@ export default function Students() {
             student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             student.nim.includes(searchQuery)
         );
-    }, [searchQuery]);
+    }, [searchQuery, students]);
 
     const onRefresh = async () => {
         setRefreshing(true);

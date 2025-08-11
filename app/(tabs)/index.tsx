@@ -107,18 +107,6 @@ export default function Home() {
         
         <TouchableOpacity 
           style={styles.navButton}
-          onPress={() => router.push('/(tabs)/about')}
-        >
-          <Ionicons name="information-circle" size={24} color="#fff" />
-          <View style={styles.navButtonContent}>
-            <Text style={styles.navButtonText}>Tentang Aplikasi</Text>
-            <Text style={styles.navButtonSubtext}>Informasi & fitur aplikasi</Text>
-          </View>
-          <Ionicons name="chevron-forward" size={24} color="#fff" />
-        </TouchableOpacity>
-        
-        <TouchableOpacity 
-          style={styles.navButton}
           onPress={() => router.push('/(tabs)/profile')}
         >
           <Ionicons name="person" size={24} color="#fff" />
